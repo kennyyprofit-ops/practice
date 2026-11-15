@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performance Practice Playground</title>
-    <link rel="preload" href="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600" as="image" fetchpriority="high">
+    <link rel="preload" href="hero.webp" as="image" fetchpriority="high">
     <!-- BOTTLENECK 1: Google Font without display=swap (causes text render delay / slow LCP) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
 
@@ -54,7 +54,7 @@
 
     <!-- BOTTLENECK 4: Large unoptimized image loaded without preloading or modern formats -->
     <div class="banner-container">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600" alt="Matrix Code Background" fetchpriority="high">
+        <img src="hero.webp" alt="Matrix Code Background" fetchpriority="high">
     </div>
 
     <div class="content">
