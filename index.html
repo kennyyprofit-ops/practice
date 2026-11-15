@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Practice Playground</title>
+    
+    <!-- BOTTLENECK 1: Google Font without display=swap (causes text render delay / slow LCP) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=block" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* BOTTLENECK 2: No explicit width/height on image container causes layout shift (CLS) */
+        .banner-container {
+            width: 100%;
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .content {
+            margin-top: 2rem;
+        }
+
+        .heavy-box {
+            background: #ffcccc;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            border: 2px dashed #ff0000;
+        }
+    </style>
+
+    <!-- BOTTLENECK 3: Render-blocking external CSS & synchronous script in the head -->
+    <link rel="stylesheet" href="non-existent-blocking-style.css">
+    <script>
+        // Simulating a heavy synchronous script task that spikes Total Blocking Time (TBT)
+        const start = performance.now();
+        while (performance.now() - start < 300) {
+            // Blocks main thread for 300ms intentionally
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Can You Fix My Core Web Vitals?</h1>
+        <p>This page is intentionally broken for Technical SEO and performance practice.</p>
+    </header>
+
+    <!-- BOTTLENECK 4: Large unoptimized image loaded without preloading or modern formats -->
+    <div class="banner-container">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600" alt="Matrix Code Background">
+    </div>
+
+    <div class="content">
+        <div class="heavy-box">
+            <h3>Diagnostic Challenge</h3>
+            <p>Run this specific page URL through PageSpeed Insights, look at the diagnostic audits, and try to bring the score back up to 90+!</p>
+        </div>
+    </div>
+
+</body>
+</html>
